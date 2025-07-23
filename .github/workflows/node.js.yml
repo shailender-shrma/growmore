@@ -2,7 +2,7 @@ name: Progress Bar CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: '*/10 * * * *'
