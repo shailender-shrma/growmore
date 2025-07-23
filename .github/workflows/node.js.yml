@@ -2,27 +2,29 @@ name: Progress Bar CI
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '*/10 * * * *'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: Update README.md
-      run: node index.js > README.md
-    - name: Commit change & Push
-      run: |
-          git config user.name 'shailender-shrma'
+      - uses: actions/checkout@v2
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          
+      - name: Update README.md
+        run: node index.js > README.md
+      
+      - name: Commit change & Push
+        run: |
+          git config user.name 'Shailender-Shrma'
           git config user.email 'sshailender26@gmail.com'
-          git commit -am "plant some tree 🌳"
+          git commit -am "plant some tree 🌳" || echo "No changes to commit"
           git push
